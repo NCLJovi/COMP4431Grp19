@@ -54,8 +54,9 @@ def _check_lookalike(host: str, domain: str) -> tuple[str, str] | None:
         # Very short brands such as "sc" only count as a whole word, or "discount" would match.
         if brand in words or (len(compact) >= 4 and compact in label.replace("-", "")):
             return "lookalike", official
-        # Short brands such as "dhl" would match too many unrelated words on edit distance.
-        if len(compact) >= 5 and Levenshtein.distance(label, compact) <= 2:
+        # Short brands or labels such as "dhl" or "page" (page.link) would match too many unrelated
+        # words on edit distance, so both must be at least 5 characters.
+        if len(compact) >= 5 and len(label) >= 5 and Levenshtein.distance(label, compact) <= 2:
             return "lookalike", official
     return None
 

@@ -79,6 +79,9 @@ def test_score_formula_and_clamping():
     ("https://www.hsbc.com.hk/help", None, "hsbc.com.hk"),
     ("https://www.ird.gov.hk", None, "gov.hk"),
     ("discount.com", None, None),
+    ("https://clubshopping.page.link/clubsim", None, None),
+    ("paymee.com", "lookalike", "payme.hsbc"),
+    ("octopuss.com", "lookalike", "octopus.com.hk"),
 ])
 def test_url_inspector(url, issue, target):
     finding = inspect_urls(f"Check {url} today")[0]

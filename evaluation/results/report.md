@@ -35,7 +35,7 @@ Dataset: 100 messages (50 scam, 50 legitimate). Scam means score >= 40.
 
 ## Response time, without the LLM
 
-p50 1.15 ms, p95 1.56 ms over 100 messages.
+p50 1.09 ms, p95 1.76 ms over 100 messages.
 
 ## Out-of-fold errors
 
