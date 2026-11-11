@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scam Checker</title>
+<style>
+  :root { --bg:#f6f4ef; --card:#fff; --ink:#20242a; --muted:#5d6570; --line:#ddd8cd; --accent:#1f5f8b;
+          --low:#2e7d4f; --medium:#b7791f; --high:#c0392b; --mark:#fbd5cf; --mark-m:#d7f0dd; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:18px/1.55 system-ui,"Microsoft JhengHei",sans-serif; }
+  main { max-width:860px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { margin:0; font-size:30px; }
+  .sub { color:var(--muted); margin:0 0 18px; }
+  .tabs { display:flex; gap:8px; margin-bottom:16px; }
+  button { font:inherit; padding:10px 18px; border-radius:8px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
+  button.ghost { background:transparent; color:var(--accent); }
+  button:disabled { opacity:.55; cursor:wait; }
+  textarea, input[type=text] { width:100%; font:inherit; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fff; color:inherit; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px; margin-top:16px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+  .summary { display:flex; gap:18px; align-items:center; }
+  .avatar { font-size:64px; line-height:1; }
+  .meter { flex:1; min-width:0; }
+  .bar { height:18px; background:#ece8df; border-radius:9px; overflow:hidden; }
+  .fill { height:100%; width:0; transition:width .4s; }
+  .level { font-size:24px; font-weight:700; }
+  .original { white-space:pre-wrap; overflow-wrap:anywhere; }
+  mark { background:var(--mark); color:inherit; border-radius:3px; cursor:help; }
+  mark.safe { background:var(--mark-m); }
+  ul, ol { padding-left:24px; margin:8px 0; }
+  .banner { background:#2b2b2b; color:#ffd24d; padding:8px 12px; border-radius:6px; font-weight:700; }
+  .line { margin:8px 0; }
+  .who { font-weight:700; }
+  .hidden { display:none; }
+  .muted { color:var(--muted); font-size:15px; }
+  h2 { font-size:20px; margin:0 0 8px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Scam Checker 防騙助手</h1>
+  <p class="sub">Basic P3 demo. Paste a suspicious message 貼上可疑訊息</p>
+  <div class="tabs">
+    <button id="tabCheck">Check 檢查</button>
+    <button id="tabGym" class="ghost">Scam Gym 訓練</button>
+  </div>
+
+  <section id="check">
+    <textarea id="text" rows="5" placeholder="Paste the message here, or answer the question below"></textarea>
+    <div class="row">
+      <button id="send">Check 檢查</button>
+      <button id="newCase" class="ghost">New case 新個案</button>
+      <button id="speak" class="ghost hidden">Read aloud 讀出</button>
+      <label class="muted">Call recording <input type="file" id="audio" accept="audio/*"></label>
+    </div>
+    <div id="result" class="hidden"></div>
+  </section>
+
+  <section id="gym" class="hidden">
+    <div class="banner">TRAINING ONLY: fictional scam 訓練用，內容全屬虛構</div>
+    <div class="row">
+      <button data-scenario="bank">Fake bank call</button>
+      <button data-scenario="parcel">Fake delivery message</button>
+    </div>
+    <div id="gymLog" class="card hidden"></div>
+    <div id="gymInput" class="row hidden" style="flex-wrap:nowrap">
+      <input type="text" id="gymText" placeholder="Your reply">
+      <button id="gymSend">Send</button>
+    </div>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const FACES = {low: "🙂", medium: "🤨", high: "😱"};
+const LABEL = {low: "Low risk 低風險", medium: "Suspicious 可疑", high: "High risk 高風險"};
+const COLOR = {low: "var(--low)", medium: "var(--medium)", high: "var(--high)"};
+let sessionId = null, lastText = "", lastResponse = null, gymId = null;
+
+function el(tag, text, className) {
+  const node = document.createElement(tag);
+  if (text != null) node.textContent = text;
+  if (className) node.className = className;
+  return node;
+}
+
+async function post(path, body) {
+  const response = await fetch(path, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)});
+  if (!response.ok) throw new Error((await response.json()).detail || response.statusText);
+  return response.json();
+}
+
+// Spans count Unicode code points, while JS strings count UTF-16 units; Array.from keeps emoji aligned.
+function highlighted(text, rules) {
+  const chars = Array.from(text);
+  const spans = rules.filter(r => r.span).sort((a, b) => a.span[0] - b.span[0]);
+  const box = el("div", null, "original");
+  let pos = 0;
+  for (const rule of spans) {
+    const [start, end] = rule.span;
+    if (start < pos) continue;
+    box.append(chars.slice(pos, start).join(""));
+    const mark = el("mark", chars.slice(start, end).join(""), rule.weight < 0 ? "safe" : "");
+    mark.title = `${rule.id} ${rule.name} ${rule.name_zh}: ${rule.why}`;
+    box.append(mark);
+    pos = end;
+  }
+  box.append(chars.slice(pos).join(""));
+  return box;
+}
+
+function card(title, ...children) {
+  const box = el("div", null, "card");
+  box.append(el("h2", title), ...children);
+  return box;
+}
+
+function list(tag, items) {
+  const node = el(tag);
+  items.forEach(item => node.append(el("li", item)));
+  return node;
+}
+
+function render(data, text) {
+  const out = $("result");
+  out.replaceChildren();
+  out.classList.remove("hidden");
+  lastResponse = data;
+  $("speak").classList.remove("hidden");
+
+  const top = el("div", null, "card summary");
+  const meter = el("div", null, "meter");
+  const level = el("div", `${LABEL[data.risk_level]}  ${data.risk_score}/100`, "level");
+  level.style.color = COLOR[data.risk_level];
+  const bar = el("div", null, "bar"), fill = el("div", null, "fill");
+  fill.style.background = COLOR[data.risk_level];
+  bar.append(fill);
+  meter.append(level, bar);
+  top.append(el("div", FACES[data.risk_level], "avatar"), meter);
+  out.append(top);
+  requestAnimationFrame(() => fill.style.width = `${data.risk_score}%`);
+
+  out.append(card("Why 原因", el("p", data.explanation)));
+  if (text) out.append(card("Message 原文 (hover the marks)", highlighted(text, data.triggered_rules)));
+  if (data.url_findings.some(u => u.issue)) {
+    out.append(card("Links 連結", list("ul", data.url_findings.filter(u => u.issue).map(u => `${u.url}: ${u.issue}${u.target ? ` (imitates ${u.target})` : ""}`))));
+  }
+  if (data.similar_cases.length) {
+    out.append(card("Similar cases 相似個案", list("ul", data.similar_cases.map(c => `${c.title} ${c.title_zh}: ${Math.round(c.similarity * 100)}%`))));
+  }
+  if (data.action_plan) out.append(card(`What to do 應該點做 (${data.action_plan.urgency})`, list("ol", data.action_plan.steps)));
+  if (data.incident_summary) out.append(card("Incident summary 事件摘要", el("div", data.incident_summary, "original")));
+  if (data.next_question) {
+    const box = card("Question 問題", el("p", data.next_question));
+    const row = el("div", null, "row");
+    for (const answer of ["Yes 有", "No 冇"]) {
+      const button = el("button", answer, "ghost");
+      button.onclick = () => send(answer.split(" ")[data.language === "zh" ? 1 : 0]);
+      row.append(button);
+    }
+    box.append(row);
+    out.append(box);
+  }
+}
+
+async function send(message) {
+  const text = (message ?? $("text").value).trim();
+  if (!text) return;
+  $("send").disabled = true;
+  try {
+    const data = await post("/chat", {message: text, session_id: sessionId});
+    sessionId = data.session_id;
+    if (!message) lastText = text;
+    render(data, lastText);
+    if (!message) $("text").value = "";
+  } catch (error) {
+    alert(`Sorry, something went wrong: ${error.message}`);
+  } finally {
+    $("send").disabled = false;
+  }
+}
+
+$("send").onclick = () => send();
+$("newCase").onclick = () => {
+  sessionId = null; lastText = ""; $("text").value = "";
+  $("result").classList.add("hidden");
+  $("speak").classList.add("hidden");
+};
+$("speak").onclick = () => {
+  const speech = new SpeechSynthesisUtterance(lastResponse.explanation);
+  speech.lang = lastResponse.language === "zh" ? "zh-HK" : "en-GB";
+  speechSynthesis.cancel();
+  speechSynthesis.speak(speech);
+};
+$("audio").onchange = async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  const form = new FormData();
+  form.append("file", file);
+  try {
+    const response = await fetch("/analyze-audio", {method: "POST", body: form});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.detail);
+    sessionId = data.session_id; lastText = data.transcript;
+    render(data, lastText);
+  } catch (error) {
+    alert(`Could not analyse the recording: ${error.message}`);
+  }
+};
+
+function showTab(gym) {
+  $("gym").classList.toggle("hidden", !gym);
+  $("check").classList.toggle("hidden", gym);
+  $("tabGym").classList.toggle("ghost", !gym);
+  $("tabCheck").classList.toggle("ghost", gym);
+}
+$("tabCheck").onclick = () => showTab(false);
+$("tabGym").onclick = () => showTab(true);
+
+function gymLine(who, text) {
+  const line = el("div", null, "line");
+  line.append(el("span", `${who}: `, "who"), text);
+  $("gymLog").append(line);
+}
+
+document.querySelectorAll("[data-scenario]").forEach(button => button.onclick = async () => {
+  const data = await post("/gym/start", {scenario: button.dataset.scenario});
+  gymId = data.session_id;
+  $("gymLog").replaceChildren();
+  $("gymLog").classList.remove("hidden");
+  $("gymInput").classList.remove("hidden");
+  gymLine("Scammer (training)", data.scammer);
+});
+
+$("gymSend").onclick = async () => {
+  const text = $("gymText").value.trim();
+  if (!text || !gymId) return;
+  $("gymText").value = "";
+  gymLine("You", text);
+  const data = await post("/gym/reply", {session_id: gymId, text});
+  data.feedback.forEach(item => gymLine("Coach", item));
+  if (data.finished) {
+    const r = data.report;
+    gymLine("Result", `${r.score}/100 ${r.grade}. ${r.tip}`);
+    r.did_well.forEach(item => gymLine("Did well", item));
+    r.mistakes.forEach(item => gymLine("Mistake", item));
+    gymId = null;
+    $("gymInput").classList.add("hidden");
+  } else {
+    gymLine("Scammer (training)", data.scammer);
+  }
+};
+</script>
+</body>
+</html>

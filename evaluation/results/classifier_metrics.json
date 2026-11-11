@@ -1,0 +1,60 @@
+{
+ "messages": 5159,
+ "spam": 642,
+ "ham": 4517,
+ "duplicates_removed": 415,
+ "removed_because_in_test_set": 0,
+ "majority_class_accuracy": 0.8756,
+ "held_out_20_percent": {
+  "accuracy": 0.9826,
+  "precision": 0.9231,
+  "recall": 0.9375,
+  "f1": 0.9302
+ },
+ "cv_5_fold": {
+  "accuracy": 0.9851,
+  "precision": 0.9491,
+  "recall": 0.9299,
+  "f1": 0.9394
+ },
+ "vocabulary_size": 12263,
+ "top_terms": {
+  "spam": [
+   "txt",
+   "call",
+   "text",
+   "free",
+   "uk",
+   "150p",
+   "www",
+   "mobile",
+   "claim",
+   "reply",
+   "stop",
+   "com",
+   "service",
+   "to",
+   "chat"
+  ],
+  "ham": [
+   "me",
+   "my",
+   "ok",
+   "that",
+   "can",
+   "gt",
+   "lt",
+   "yup",
+   "lt gt",
+   "da",
+   "it",
+   "he",
+   "home",
+   "then",
+   "later"
+  ]
+ },
+ "dataset": "SMS Spam Collection v.1",
+ "extra_file": null,
+ "note": "Measured on this training data only. This does not measure real-world scam detection."
+}

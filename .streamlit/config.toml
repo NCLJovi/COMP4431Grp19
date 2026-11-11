@@ -1,0 +1,40 @@
+[theme]
+# Elderly-friendly theme. Bigger base font, calm blue accent, generous spacing.
+# Read UX_GUIDELINES.md for why each value is what it is.
+base = "light"
+primaryColor = "#0B57D0"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F1F4F8"
+textColor = "#14171A"
+linkColor = "#0B57D0"
+
+# 22px base instead of the default 16px. Every widget scales from this.
+baseFontSize = 22
+baseFontWeight = 400
+
+# Atkinson Hyperlegible was designed by the Braille Institute for low vision.
+# If the demo machine is offline, Streamlit falls back to the system font.
+font = "Atkinson Hyperlegible:https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+
+baseRadius = "large"
+buttonRadius = "16px"
+showWidgetBorder = true
+
+paddingTop = "1.5rem"
+# Generous bottom padding on purpose: Streamlit Cloud draws its own badge in the
+# bottom-right corner, and without the extra room it sits on top of the footer text.
+paddingBottom = "8rem"
+
+headingFontSizes = ["42px", "34px", "28px", "24px", "22px", "20px"]
+
+[client]
+# Hides the "Deploy" button and developer menu. Nothing on this screen should
+# invite an elderly user to click something that is not for them.
+toolbarMode = "minimal"
+
+[server]
+# Keeps the browser tab honest when several demo apps are open on one laptop.
+headless = true
+
+[browser]
+gatherUsageStats = false

@@ -1,0 +1,284 @@
+{
+ "warning": "The labelled set is synthetic and was written by the same author as the rules, so these figures show the method working and do not estimate real-world accuracy. Replace it with real data (P1).",
+ "dataset": {
+  "total": 100,
+  "scam": 50,
+  "legit": 50
+ },
+ "test": {
+  "rule_only": {
+   "tp": 10,
+   "fp": 0,
+   "fn": 5,
+   "tn": 15,
+   "accuracy": 0.833,
+   "precision": 1.0,
+   "recall": 0.667,
+   "f1": 0.8
+  },
+  "classifier_only": {
+   "tp": 4,
+   "fp": 3,
+   "fn": 11,
+   "tn": 12,
+   "accuracy": 0.533,
+   "precision": 0.571,
+   "recall": 0.267,
+   "f1": 0.364
+  },
+  "classifier_only_english": {
+   "tp": 4,
+   "fp": 3,
+   "fn": 4,
+   "tn": 6,
+   "accuracy": 0.588,
+   "precision": 0.571,
+   "recall": 0.5,
+   "f1": 0.533
+  },
+  "hybrid": {
+   "tp": 11,
+   "fp": 0,
+   "fn": 4,
+   "tn": 15,
+   "accuracy": 0.867,
+   "precision": 1.0,
+   "recall": 0.733,
+   "f1": 0.846
+  },
+  "hybrid_ga": {
+   "tp": 14,
+   "fp": 0,
+   "fn": 1,
+   "tn": 15,
+   "accuracy": 0.967,
+   "precision": 1.0,
+   "recall": 0.933,
+   "f1": 0.966
+  },
+  "hybrid_ga_classifier": {
+   "tp": 14,
+   "fp": 0,
+   "fn": 1,
+   "tn": 15,
+   "accuracy": 0.967,
+   "precision": 1.0,
+   "recall": 0.933,
+   "f1": 0.966
+  }
+ },
+ "cross_validation": {
+  "summary": {
+   "rule_only": {
+    "tp": 30,
+    "fp": 0,
+    "fn": 20,
+    "tn": 50,
+    "accuracy": 0.8,
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75
+   },
+   "classifier_only": {
+    "tp": 10,
+    "fp": 6,
+    "fn": 40,
+    "tn": 44,
+    "accuracy": 0.54,
+    "precision": 0.625,
+    "recall": 0.2,
+    "f1": 0.303
+   },
+   "classifier_only_english": {
+    "tp": 10,
+    "fp": 6,
+    "fn": 16,
+    "tn": 21,
+    "accuracy": 0.585,
+    "precision": 0.625,
+    "recall": 0.385,
+    "f1": 0.476
+   },
+   "hybrid": {
+    "tp": 33,
+    "fp": 0,
+    "fn": 17,
+    "tn": 50,
+    "accuracy": 0.83,
+    "precision": 1.0,
+    "recall": 0.66,
+    "f1": 0.795
+   },
+   "hybrid_ga": {
+    "tp": 41,
+    "fp": 1,
+    "fn": 9,
+    "tn": 49,
+    "accuracy": 0.9,
+    "precision": 0.976,
+    "recall": 0.82,
+    "f1": 0.891
+   },
+   "hybrid_ga_classifier": {
+    "tp": 41,
+    "fp": 2,
+    "fn": 9,
+    "tn": 48,
+    "accuracy": 0.89,
+    "precision": 0.953,
+    "recall": 0.82,
+    "f1": 0.882
+   }
+  },
+  "errors": [
+   {
+    "id": 11,
+    "type": "FN",
+    "score": 0,
+    "lang": "en",
+    "category": "bank",
+    "text": "BOC HK: We noticed a HK$8,000 payment. If this was not you, call us and read out the code we send to your phone.",
+    "rules": [
+     "M1",
+     "R7"
+    ]
+   },
+   {
+    "id": 24,
+    "type": "FN",
+    "score": 35,
+    "lang": "en",
+    "category": "official",
+    "text": "The Consumption Voucher office needs you to confirm your bank login to release your payment.",
+    "rules": [
+     "R4"
+    ]
+   },
+   {
+    "id": 29,
+    "type": "FN",
+    "score": 7,
+    "lang": "en",
+    "category": "investment",
+    "text": "Hi, wrong number but you seem nice! I made a lot on my trading platform. Let me show you how, my uncle has insider tips.",
+    "rules": []
+   },
+   {
+    "id": 34,
+    "type": "FN",
+    "score": 32,
+    "lang": "en",
+    "category": "job",
+    "text": "We reviewed your CV! Simple tasks only, commission paid daily. A small top-up is needed to activate your task account.",
+    "rules": [
+     "R11"
+    ]
+   },
+   {
+    "id": 37,
+    "type": "FN",
+    "score": 18,
+    "lang": "zh",
+    "category": "family",
+    "text": "估下我係邊個？我係你舊同事呀，最近周轉唔靈，借兩萬蚊嚟應急得唔得？",
+    "rules": [
+     "R13"
+    ]
+   },
+   {
+    "id": 38,
+    "type": "FN",
+    "score": 21,
+    "lang": "en",
+    "category": "family",
+    "text": "Grandma it's me. I had an accident and the police are holding me. Please don't tell dad, I need bail money right now.",
+    "rules": [
+     "R6"
+    ]
+   },
+   {
+    "id": 39,
+    "type": "FN",
+    "score": 33,
+    "lang": "zh",
+    "category": "family",
+    "text": "阿爺，我撞咗車，對方要賠錢，唔好話俾爸爸知，你即刻入 3 萬蚊去呢個戶口。",
+    "rules": [
+     "R1",
+     "R12"
+    ]
+   },
+   {
+    "id": 49,
+    "type": "FN",
+    "score": 38,
+    "lang": "en",
+    "category": "shopping",
+    "text": "I can sell you the iPhone at half price, FPS me the deposit first and I will post it tomorrow.",
+    "rules": [
+     "R5"
+    ]
+   },
+   {
+    "id": 50,
+    "type": "FN",
+    "score": 17,
+    "lang": "zh",
+    "category": "evasive",
+    "text": "老友記你好，我係社區中心嘅陳姑娘，你申請嘅長者津貼批咗，麻煩你講低張卡後面三個字我幫你入數。",
+    "rules": [
+     "R19"
+    ]
+   },
+   {
+    "id": 71,
+    "type": "FP",
+    "score": 47,
+    "lang": "en",
+    "category": "official",
+    "text": "Hong Kong Police reminder: stay alert to phone scams. Call the Anti-Scam Helpline 18222 if in doubt.",
+    "rules": [
+     "R6"
+    ]
+   },
+   {
+    "id": 81,
+    "type": "FP",
+    "score": 44,
+    "lang": "en",
+    "category": "family",
+    "text": "Can you transfer me HK$200 for the birthday cake we split? Thanks!",
+    "rules": [
+     "R5"
+    ]
+   }
+  ]
+ },
+ "by_language": {
+  "en": {
+   "tp": 22,
+   "fp": 0,
+   "fn": 4,
+   "tn": 27,
+   "accuracy": 0.925,
+   "precision": 1.0,
+   "recall": 0.846,
+   "f1": 0.917
+  },
+  "zh": {
+   "tp": 24,
+   "fp": 0,
+   "fn": 0,
+   "tn": 23,
+   "accuracy": 1.0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0
+  }
+ },
+ "latency": {
+  "n": 100,
+  "p50_ms": 1.15,
+  "p95_ms": 1.56
+ }
+}

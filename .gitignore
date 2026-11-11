@@ -1,0 +1,10 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.wav
+*.mp3
+*.m4a
+.streamlit/secrets.toml
+CLAUDE.md

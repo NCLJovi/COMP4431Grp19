@@ -1,0 +1,167 @@
+{
+ "summary": {
+  "messages": 11,
+  "scam": 11,
+  "ham": 0,
+  "scam_flagged": 10,
+  "scam_high": 7,
+  "ham_flagged": 0,
+  "levels": {
+   "high": 7,
+   "low": 1,
+   "medium": 3
+  }
+ },
+ "results": [
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "government",
+   "text": "香港稅務部門通知：你有一筆未繳稅款，請立即點擊連結確認身份，否則可能面臨法律行動：https://tax.example.invalid",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "urgency",
+    "money request",
+    "link",
+    "government impersonation"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "tech_support",
+   "text": "你的電腦已感染病毒，請立即致電技術支援人員，否則你的檔案和銀行資料將會被盜取。",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 23,
+   "risk_level": "low",
+   "matched_patterns": [
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "charge",
+   "text": "尊敬嘅用戶:你簽約嘅會員已開始計費，將喺你名下戶頭扣攞費用2779.59，若需關閉請聯絡客服:2123-4567",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 78,
+   "risk_level": "high",
+   "matched_patterns": [
+    "phone number",
+    "unexpected charge"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "account",
+   "text": "用户1641为确认账号是本人使用，请立即前往: https://scam-example.com/ 未完成关联的账号将被永久停用。",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 97,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "parcel",
+   "text": "【順豐速運】您的派件因送貨員多次致電未能接通，暫未完成派送請快速撥打：2123-4567 预約擺件或者安排邊度，晤該晒",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 65,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "phone number",
+    "parcel"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "account",
+   "text": "您的賬號被多次舉報存在查閱/發布/傳播敏感信息，請於12小时内點擊  web.t-p.scam-example.cc 進行驗證，否則賬號將被永久收回。",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "charge",
+   "text": "【BOC Life】重要通知：閣下嘅賬戶開通咗中銀生活會員，今日開始扣取HKD1831.91 。取消請致電熱線：2123-4567",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 80,
+   "risk_level": "high",
+   "matched_patterns": [
+    "phone number",
+    "unexpected charge",
+    "bank impersonation"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "parcel",
+   "text": "【順豐速運】您的派件因送貨員多次致電未能接通，暫未完成派送請快速撥打：9123-4567 预約擺件或者安排邊度，晤該晒.",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 65,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "phone number",
+    "parcel"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "gambling",
+   "text": "⏩在線娛樂卻唔知從邊度玩？\n⏩為妳推薦一個評分極高在線娛樂《巴黎人188》。\n⏩裏面具有大量眾多精挑細選優質賭場遊戲同埋優質博彩APP ，百家樂、輪盤、21點、體育、賽馬、彩票、電子、老虎機、打魚機 等等。 。 。應有盡有。\n\n✅支持，Alipay、7-11、OK 便利店、屈臣氏、各大銀行戶口等等。 。 。多種入錢渠道❗️\n💝24小時提存服務💝\n\n🏆巴黎人188 香港老牌網站！只此一間，信心保証，是妳的最佳選擇！\n\n免費註冊網址：www.scam-example.com\n極速開戶Telegram頻道\nhttps://t.me/scam_example",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "money request",
+    "private chat",
+    "gambling",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "charge",
+   "text": "尊敬嘅用戶，上月簽署嘅會員到期了，產生費用即日開始計算：2767.19，如有疑問咨詢:2123-4567 多謝",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 79,
+   "risk_level": "high",
+   "matched_patterns": [
+    "phone number",
+    "unexpected charge"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "neighbour",
+   "text": "您好鄰居，我是宋女士，不好意思打擾您，您家昨晚是不是有聚會，影響到我休息啦，方便的話加我 WA;  6123 4567",
+   "source": "questionnaire 2026-11, links and numbers replaced",
+   "risk_score": 48,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "private chat",
+    "romance"
+   ]
+  }
+ ]
+}

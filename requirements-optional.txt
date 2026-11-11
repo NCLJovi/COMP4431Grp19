@@ -1,0 +1,2 @@
+# Speech-to-text for /analyze-audio and demo.py --audio. Not installed or tested yet; pin a version once it is.
+faster-whisper
