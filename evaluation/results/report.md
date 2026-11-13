@@ -30,8 +30,8 @@ Dataset: 100 messages (50 scam, 50 legitimate). Scam means score >= 40.
 
 | Language | Accuracy | Precision | Recall | F1 |
 |---|---|---|---|---|
-| en | 0.925 | 1.0 | 0.846 | 0.917 |
-| zh | 1.0 | 1.0 | 1.0 | 1.0 |
+| en | 0.943 | 1.0 | 0.885 | 0.939 |
+| zh | 0.957 | 0.958 | 0.958 | 0.958 |
 
 ## Response time, without the LLM
 

@@ -1,13 +1,13 @@
 {
  "summary": {
-  "messages": 11,
-  "scam": 11,
+  "messages": 17,
+  "scam": 17,
   "ham": 0,
-  "scam_flagged": 10,
-  "scam_high": 7,
+  "scam_flagged": 16,
+  "scam_high": 13,
   "ham_flagged": 0,
   "levels": {
-   "high": 7,
+   "high": 13,
    "low": 1,
    "medium": 3
   }
@@ -22,11 +22,11 @@
    "risk_score": 100,
    "risk_level": "high",
    "matched_patterns": [
-    "account problem",
-    "urgency",
+    "government impersonation",
     "money request",
+    "urgency",
     "link",
-    "government impersonation"
+    "account problem"
    ]
   },
   {
@@ -35,7 +35,7 @@
    "category": "tech_support",
    "text": "你的電腦已感染病毒，請立即致電技術支援人員，否則你的檔案和銀行資料將會被盜取。",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 23,
+   "risk_score": 19,
    "risk_level": "low",
    "matched_patterns": [
     "urgency"
@@ -47,11 +47,11 @@
    "category": "charge",
    "text": "尊敬嘅用戶:你簽約嘅會員已開始計費，將喺你名下戶頭扣攞費用2779.59，若需關閉請聯絡客服:2123-4567",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 78,
+   "risk_score": 91,
    "risk_level": "high",
    "matched_patterns": [
-    "phone number",
-    "unexpected charge"
+    "unexpected charge",
+    "phone number"
    ]
   },
   {
@@ -60,7 +60,7 @@
    "category": "account",
    "text": "用户1641为确认账号是本人使用，请立即前往: https://scam-example.com/ 未完成关联的账号将被永久停用。",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 97,
+   "risk_score": 94,
    "risk_level": "high",
    "matched_patterns": [
     "account problem",
@@ -74,8 +74,8 @@
    "category": "parcel",
    "text": "【順豐速運】您的派件因送貨員多次致電未能接通，暫未完成派送請快速撥打：2123-4567 预約擺件或者安排邊度，晤該晒",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 65,
-   "risk_level": "medium",
+   "risk_score": 74,
+   "risk_level": "high",
    "matched_patterns": [
     "phone number",
     "parcel"
@@ -101,11 +101,11 @@
    "category": "charge",
    "text": "【BOC Life】重要通知：閣下嘅賬戶開通咗中銀生活會員，今日開始扣取HKD1831.91 。取消請致電熱線：2123-4567",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 80,
+   "risk_score": 93,
    "risk_level": "high",
    "matched_patterns": [
-    "phone number",
     "unexpected charge",
+    "phone number",
     "bank impersonation"
    ]
   },
@@ -115,8 +115,8 @@
    "category": "parcel",
    "text": "【順豐速運】您的派件因送貨員多次致電未能接通，暫未完成派送請快速撥打：9123-4567 预約擺件或者安排邊度，晤該晒.",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 65,
-   "risk_level": "medium",
+   "risk_score": 74,
+   "risk_level": "high",
    "matched_patterns": [
     "phone number",
     "parcel"
@@ -132,8 +132,8 @@
    "risk_level": "high",
    "matched_patterns": [
     "money request",
-    "private chat",
     "gambling",
+    "private chat",
     "link"
    ]
   },
@@ -143,11 +143,11 @@
    "category": "charge",
    "text": "尊敬嘅用戶，上月簽署嘅會員到期了，產生費用即日開始計算：2767.19，如有疑問咨詢:2123-4567 多謝",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 79,
+   "risk_score": 92,
    "risk_level": "high",
    "matched_patterns": [
-    "phone number",
-    "unexpected charge"
+    "unexpected charge",
+    "phone number"
    ]
   },
   {
@@ -156,11 +156,91 @@
    "category": "neighbour",
    "text": "您好鄰居，我是宋女士，不好意思打擾您，您家昨晚是不是有聚會，影響到我休息啦，方便的話加我 WA;  6123 4567",
    "source": "questionnaire 2026-11, links and numbers replaced",
-   "risk_score": 48,
+   "risk_score": 42,
    "risk_level": "medium",
    "matched_patterns": [
     "private chat",
     "romance"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "parcel",
+   "text": "【順豐速運】您的派件因送貨員多次致電未能接通，暫未完成派送請快速撥打：3123-4567 预約擺件或者安排邊度，晤該晒",
+   "source": "questionnaire 2026-11 (rows 23-41), links and numbers replaced",
+   "risk_score": 74,
+   "risk_level": "high",
+   "matched_patterns": [
+    "phone number",
+    "parcel"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "charge",
+   "text": "你簽約嘅會員已開始計費，將喺你名下戶頭扣攞費用1570.66，若需關閉請聯絡客服：2123-4567",
+   "source": "questionnaire 2026-11 (rows 23-41), links and numbers replaced",
+   "risk_score": 91,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "neighbour",
+   "text": "你好，我是楼下苏女士。夜里时常听到动静，休息受到影响。麻烦你加下我 WhatsApp 51234567 我把视频发你看下，谢谢，辛苦啦",
+   "source": "questionnaire 2026-11 (rows 23-41), links and numbers replaced",
+   "risk_score": 42,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "private chat",
+    "romance"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "charge",
+   "text": "你名下賬戶即將扣除會員費2248.10 HKD。如需攞消或關閉，請點擊2123-4567 聯系客服。",
+   "source": "questionnaire 2026-11 (rows 23-41), links and numbers replaced",
+   "risk_score": 52,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "unexpected charge",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "charge",
+   "text": "螞蟻保險完成簽訂，系統將於［9月9日］經閣下綁定嘅銀行賬戶自動扣除本期帳單費用［ HKD 2880.35］。如需取消請聯絡：31234567",
+   "source": "questionnaire 2026-11 (rows 23-41), links and numbers replaced",
+   "risk_score": 91,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "category": "charge",
+   "text": "【AlipayHK】螞蟻綜合保險已為你開通，每月費用將於近期扣取 HKD2150，有意取消請盡快聯絡客服熱線：21234567",
+   "source": "questionnaire 2026-11 (rows 23-41), links and numbers replaced",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency",
+    "bank impersonation"
    ]
   }
  ]
