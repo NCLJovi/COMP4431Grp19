@@ -1,4 +1,5 @@
-"""The short list of questions the assistant can actually answer, in English and Traditional Chinese.
+"""What the assistant understands from a typed line, in English and Traditional Chinese: greetings,
+a request to book a consultation, yes and no, and a short list of questions it can actually answer.
 
 An elderly user asking "is my bank really calling?" needs a correct answer, not a fluent guess. Everything
 outside these questions gets an honest "I am not sure, please call 18222" instead of an invented reply.
@@ -6,6 +7,27 @@ outside these questions gets an honest "I am not sure, please call 18222" instea
 Matching is a plain "does the message contain this phrase" test. Phrases must be lowercase. The phrases of
 both languages are always checked, and the reply follows the language chosen on the screen.
 """
+
+import re
+
+# A greeting must be the whole line, so "Hi Mum, see you at 6" is still checked as a message.
+GREETING = re.compile(
+    r"^\s*(?:hi|hello|hey|hi there|hello there|good (?:morning|afternoon|evening)|"
+    r"你好|您好|哈囉|哈佬|早晨|早安|午安|晚安|喂)[\s!！.。,，~呀啊]*$",
+    re.IGNORECASE,
+)
+BOOKING_REQUEST = re.compile(
+    r"\b(?:book|booking|appointment|consultation|consult|reserve|reservation)\b|"
+    r"預約|预约|諮詢|咨詢|咨询|約時間|訂時間|約個時間",
+    re.IGNORECASE,
+)
+CANCEL = re.compile(r"\b(?:cancel|stop|never ?mind|quit|exit)\b|取消|不要了|唔要|算了", re.IGNORECASE)
+YES = re.compile(
+    r"^\s*(?:yes|yeah|yep|ok|okay|sure|confirm|book it|yes,? (?:please|book it)|"
+    r"好|好的|好呀|好啊|係|是|是的|確認|确认|可以)[\s!！.。]*$",
+    re.IGNORECASE,
+)
+NO = re.compile(r"^\s*(?:no|nope|change|change it|no,? change it|不|不好|不是|不用|唔好|唔係|改|更改|否)[\s!！.。]*$", re.IGNORECASE)
 
 INTENTS = [
     {
@@ -133,11 +155,11 @@ INTENTS = [
             "en": (
                 "I can check a message you received and tell you if it looks like a scam. "
                 "Paste the message here and I will look at it. "
-                "I can also tell you who to call."
+                "I can also book a free consultation, and tell you who to call."
             ),
             "zh": (
                 "我可以檢查你收到的訊息，告訴你它是否像騙案。"
-                "請在這裏貼上訊息，我會幫你看看，也可以告訴你應該聯絡誰。"
+                "請在這裏貼上訊息，我會幫你看看。我也可以幫你預約免費諮詢，或告訴你應該聯絡誰。"
             ),
         },
     },
@@ -178,9 +200,22 @@ def has_chinese(text):
     return any("一" <= character <= "鿿" for character in text)
 
 
+def is_short(text):
+    """True for a typed line, false for something long enough to be a pasted message."""
+    return len(text) <= MAX_QUESTION_CHARS["zh" if has_chinese(text) else "en"]
+
+
+def is_greeting(text):
+    return bool(GREETING.match(text))
+
+
+def wants_booking(text):
+    return is_short(text) and bool(BOOKING_REQUEST.search(text))
+
+
 def match(text):
     """Return the name of the matching intent, or None. First phrase that appears wins."""
-    if len(text) > MAX_QUESTION_CHARS["zh" if has_chinese(text) else "en"]:
+    if not is_short(text):
         return None
     lowered = text.lower()
     for intent in INTENTS:

@@ -54,7 +54,7 @@ def test_screen_one():
 
 def test_empty_input_guard():
     app = fresh()
-    say(app, "hi")
+    say(app, "abc")
     assert "do not see a message there" in texts(app)
     print("  OK  short nonsense gets a helpful nudge, not a fake verdict")
 

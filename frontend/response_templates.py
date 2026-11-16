@@ -236,8 +236,19 @@ UI = {
     "en": {
         "page_title": "Scam check",
         "title": "Is this message a scam?",
-        "greeting": "Hello. Paste the message you are worried about, or press an example.",
-        "input_placeholder": "Paste the message here",
+        "greeting": "Hello. I can check a suspicious message for you, or book a free scam-advice consultation. What would you like to do?",
+        "greeting_reply": "Hello! How can I help you today? Please choose one of the two options below.",
+        "menu_check": "Check a message",
+        "menu_book": "Book a consultation",
+        "ask_message": "Of course. Paste the message you are worried about in the box below, or press an example.",
+        "booking_cancel": "Cancel booking",
+        "booking_yes": "Yes, book it",
+        "booking_no": "No, change it",
+        "booking_taken_label": "{time} (booked)",
+        "booking_full_label": "{day} (full)",
+        "booking_note": "Demo booking: no real appointment is made.",
+        "input_placeholder": "Type here, or paste the message",
+        "input_placeholder_booking": "Type a day or a time, or press a button above",
         "examples_label": "No message to hand? Try one:",
         "call_button": "Call 18222 — Anti-Scam Helpline",
         "call_caption": "Or call the number on the back of your bank card.",
@@ -257,8 +268,19 @@ UI = {
     "zh": {
         "page_title": "騙案檢查",
         "title": "這個訊息是騙案嗎？",
-        "greeting": "你好。請貼上令你擔心的訊息，或按下面的例子。",
-        "input_placeholder": "在這裏貼上訊息",
+        "greeting": "你好。我可以幫你檢查可疑訊息，或者預約免費防騙諮詢。請問你想做甚麼？",
+        "greeting_reply": "你好！有甚麼可以幫你？請在下面兩個選項中選一個。",
+        "menu_check": "檢查訊息",
+        "menu_book": "預約諮詢",
+        "ask_message": "好的。請在下面貼上令你擔心的訊息，或按一個例子。",
+        "booking_cancel": "取消預約",
+        "booking_yes": "好，幫我預約",
+        "booking_no": "不，我想更改",
+        "booking_taken_label": "{time}（已滿）",
+        "booking_full_label": "{day}（已滿）",
+        "booking_note": "示範預約：不會安排真實的會面。",
+        "input_placeholder": "在這裏輸入，或貼上訊息",
+        "input_placeholder_booking": "輸入日期或時間，或按上面的按鈕",
         "examples_label": "手上沒有訊息？試試這些：",
         "call_button": "致電 18222 — 防騙易熱線",
         "call_caption": "或撥打銀行卡背面的電話號碼。",
@@ -278,7 +300,48 @@ UI = {
 }
 
 # ---------------------------------------------------------------------------
-# 5. The example buttons. Only use made-up addresses here.
+# 5. Consultation booking (a demo: no real appointment is made)
+# ---------------------------------------------------------------------------
+# Keep the placeholders: {day}, {time}, {free} (the list of free times) and {ref} (the booking reference).
+BOOKING = {
+    "en": {
+        "ask_day": "I can book a free 30-minute consultation with an anti-scam adviser. Which day would you like?",
+        "which_day": "Sorry, I did not catch the day. Please press one of the days below, or type a day such as Tuesday.",
+        "day_full": "Sorry, {day} is fully booked. Please choose another day.",
+        "ask_time": "These times are free on {day}: {free}. Which time suits you?",
+        "which_time": "Sorry, I did not catch the time. The free times on {day} are {free}.",
+        "not_a_slot": "Sorry, consultations start on the hour. The free times on {day} are {free}.",
+        "taken": "Sorry, {time} on {day} is already booked. The free times that day are {free}.",
+        "confirm": "You chose {day} at {time}. Shall I book it?",
+        "yes_or_no": "Please answer yes to book {day} at {time}, or no to change it.",
+        "booked": "**Your consultation is booked for {day} at {time}.**\n\nYour reference number is **{ref}**. Please write it down. You do not need to give your name.\n\nThis is a demo booking, so no real appointment is made.",
+        "change": "No problem. Let us pick another time.",
+        "cancelled": "I have cancelled that. Nothing was booked.",
+    },
+    "zh": {
+        "ask_day": "我可以幫你預約 30 分鐘的免費防騙諮詢。請問你想約哪一天？",
+        "which_day": "不好意思，我看不明白是哪一天。請按下面其中一天，或輸入例如「星期二」。",
+        "day_full": "不好意思，{day}已經約滿。請選另一天。",
+        "ask_time": "{day}還有這些時間：{free}。請問哪個時間適合你？",
+        "which_time": "不好意思，我看不明白時間。{day}還有這些時間：{free}。",
+        "not_a_slot": "不好意思，諮詢只在整點開始。{day}還有這些時間：{free}。",
+        "taken": "不好意思，{day} {time} 已經有人預約。當日還有這些時間：{free}。",
+        "confirm": "你選擇了{day} {time}。要幫你預約嗎？",
+        "yes_or_no": "請回答「好」預約{day} {time}，或回答「不」更改時間。",
+        "booked": "**已為你預約{day} {time} 的諮詢。**\n\n你的預約編號是 **{ref}**，請記下來。你不需要提供姓名。\n\n這是示範預約，不會安排真實的會面。",
+        "change": "沒問題，我們再選另一個時間。",
+        "cancelled": "已經取消，沒有預約任何時間。",
+    },
+}
+
+WEEKDAYS = {
+    "en": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "zh": ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+}
+MONTHS_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+# ---------------------------------------------------------------------------
+# 6. The example buttons. Only use made-up addresses here.
 # ---------------------------------------------------------------------------
 EXAMPLES = {
     "en": [
@@ -345,6 +408,27 @@ def why_line(matched_patterns, language="en"):
     # Only the first phrase keeps its "it", so the line reads as one sentence.
     tail = [reason.removeprefix("it ") for reason in reasons[1:]]
     return f"{text['why']} {', '.join([reasons[0], *tail])}."
+
+
+def day_label(day, language="en"):
+    """A date as the user reads it: "Tue 17 Nov" or "11月17日（星期二）"."""
+    weekday = WEEKDAYS[language][day.weekday()]
+    if language == "zh":
+        return f"{day.month}月{day.day}日（{weekday}）"
+    return f"{weekday} {day.day} {MONTHS_EN[day.month - 1]}"
+
+
+def booking_text(entry, language="en"):
+    """One booking sentence. `entry` holds the sentence key and the day, time, free times or reference."""
+    from datetime import date
+
+    values = {
+        "day": day_label(date.fromisoformat(entry["date"]), language) if entry.get("date") else "",
+        "time": entry.get("time", ""),
+        "ref": entry.get("ref", ""),
+        "free": ("、" if language == "zh" else ", ").join(entry.get("free", [])),
+    }
+    return BOOKING[language][entry["booking"]].format(**values)
 
 
 def template_for(risk_level, language="en"):

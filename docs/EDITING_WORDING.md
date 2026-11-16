@@ -27,6 +27,10 @@ Streamlit 同 backend 嘅字都有兩個語言：`"en"` 係英文，`"zh"` 係�
 | 畫面上嘅嘢 | 搵呢個名 |
 |---|---|
 | 語言切換掣嘅字 | `LANGUAGES` |
+| 打招呼、功能選單兩個掣、「請貼上訊息」 | `UI` 入面嘅 `greeting`、`greeting_reply`、`menu_check`、`menu_book`、`ask_message` |
+| 預約諮詢每一句對白 | `BOOKING`（`{day}`、`{time}`、`{free}`、`{ref}` 唔好改） |
+| 預約掣上面嘅字、「已滿」標示、示範聲明 | `UI` 入面 `booking_` 開頭嘅幾行 |
+| 星期同月份寫法 | `WEEKDAYS`、`MONTHS_EN` |
 | 紅／黃／綠結果嘅標題、內文、三個步驟 | `TEMPLATES` → `"high"` / `"medium"` / `"low"` |
 | 「Why:」後面嗰啲理由 | `PATTERN_PLAIN` |
 | 冇對應理由時嘅句子 | `FALLBACK_REASON` |
@@ -119,6 +123,8 @@ TEMPLATES = {
 | Rule 對應邊個理由 | `backend/patterns.py` 嘅 `RULE_TO_PATTERN` | 加新名字，要喺 `PATTERN_PLAIN` 加返一行 |
 | 高／中風險分界 | `backend/config.py` 嘅 `HIGH_THRESHOLD`、`MEDIUM_THRESHOLD` | 改完要重跑 GA 同 evaluation |
 | 官方網域名單 | `data/official_domains.json` | |
+| 預約時段、邊啲時段預設已滿 | `backend/booking.py` 嘅 `SLOT_TIMES`、`PREBOOKED` | |
+| 邊啲字算打招呼、預約、取消、好／不 | `frontend/intents.py` 頂部嘅 `GREETING`、`BOOKING_REQUEST`、`CANCEL`、`YES`、`NO` | 係 regex |
 
 ## 改完點測試
 

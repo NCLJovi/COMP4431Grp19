@@ -2,13 +2,17 @@
 
 Where the pieces live:
     frontend/response_templates.py   the words on the screen
-    frontend/intents.py              the questions the assistant can answer
+    frontend/intents.py              greetings, booking requests and the questions it can answer
+    backend/booking.py               the consultation booking demo
     frontend/analyzer.py             the connection to the detector in backend/
     frontend/speech.py               read-aloud
 """
 
+from datetime import date
+
 import streamlit as st
 
+from backend import booking
 from frontend import intents, speech
 from frontend import response_templates as rt
 from frontend.analyzer import AnalysisError, analyze
@@ -31,7 +35,9 @@ st.set_page_config(
 st.html(
     """
     <style>
-      [class*="st-key-reply_"] button {
+      [class*="st-key-reply_"] button,
+      [class*="st-key-menu_"] button,
+      [class*="st-key-book_"] button {
           min-height: 64px;
           font-weight: 600;
       }
@@ -70,6 +76,10 @@ def bubble_text(entry):
         return intents.FALLBACK_REPLY[lang]
     if "replied" in entry:
         return (rt.AFTER_REPLIED if entry["replied"] else rt.AFTER_NOT_REPLIED)[lang]
+    if "booking" in entry:
+        return rt.booking_text(entry, lang)
+    if "day" in entry:
+        return rt.day_label(date.fromisoformat(entry["day"]), lang)
     return entry["text"]
 
 
@@ -170,9 +180,100 @@ def resolve(replied):
     st.session_state["phase"] = "done"
 
 
-# The question that changes the advice. It sits just above the chat box, not
-# inside the transcript, because on a phone a button inside the transcript can
-# slide underneath the pinned input box and become impossible to tap.
+# ---------------------------------------------------------------------------
+# Consultation booking: choose a day, choose a time, confirm.
+# st.session_state["booking"] holds the day and time chosen so far.
+# ---------------------------------------------------------------------------
+def start_booking():
+    st.session_state["booking"] = {}
+    add("assistant", "text", booking="ask_day")
+    st.session_state["phase"] = "book_day"
+
+
+def choose_day(day):
+    free = booking.free_times(day)
+    if not free:
+        add("assistant", "text", booking="day_full", date=day.isoformat())
+        st.session_state["phase"] = "book_day"
+        return
+    st.session_state["booking"] = {"date": day.isoformat()}
+    add("assistant", "text", booking="ask_time", date=day.isoformat(), free=free)
+    st.session_state["phase"] = "book_time"
+
+
+def choose_time(time):
+    chosen = st.session_state["booking"]
+    day = date.fromisoformat(chosen["date"])
+    free = booking.free_times(day)
+    if time in free:
+        chosen["time"] = time
+        add("assistant", "text", booking="confirm", date=chosen["date"], time=time)
+        st.session_state["phase"] = "book_confirm"
+    elif not free:
+        choose_day(day)
+    else:
+        sentence = "taken" if time in booking.SLOT_TIMES else "not_a_slot"
+        add("assistant", "text", booking=sentence, date=chosen["date"], time=time, free=free)
+        st.session_state["phase"] = "book_time"
+
+
+def confirm_booking(agreed):
+    chosen = st.session_state["booking"]
+    if not agreed:
+        add("assistant", "text", booking="change")
+        start_booking()
+        return
+    try:
+        reference = booking.book(date.fromisoformat(chosen["date"]), chosen["time"])
+    except booking.SlotTaken:
+        # Someone else took the slot while this user was deciding.
+        choose_time(chosen["time"])
+        return
+    add("assistant", "text", booking="booked", date=chosen["date"], time=chosen["time"], ref=reference)
+    st.session_state["phase"] = "done"
+
+
+def cancel_booking():
+    add("assistant", "text", booking="cancelled")
+    st.session_state["phase"] = "menu"
+
+
+def booking_reply(text):
+    """Handle a typed line during a booking. Returns False if the line was not about the booking."""
+    phase = st.session_state["phase"]
+    if intents.CANCEL.search(text):
+        cancel_booking()
+        return True
+    if phase == "book_confirm":
+        if intents.YES.match(text) or intents.NO.match(text):
+            confirm_booking(bool(intents.YES.match(text)))
+            return True
+        return False
+    day = booking.parse_day(text, booking.open_days())
+    if day:
+        choose_day(day)
+    time = booking.parse_time(text, bare=phase == "book_time" and not day)
+    if time and st.session_state["phase"] == "book_time":
+        choose_time(time)
+    return bool(day or (time and phase == "book_time"))
+
+
+def booking_prompt():
+    """Repeat the current booking question after a line that was not understood."""
+    phase = st.session_state["phase"]
+    chosen = st.session_state["booking"]
+    if phase == "book_day":
+        add("assistant", "text", booking="which_day")
+    elif phase == "book_time":
+        free = booking.free_times(date.fromisoformat(chosen["date"]))
+        add("assistant", "text", booking="which_time", date=chosen["date"], free=free)
+    else:
+        add("assistant", "text", booking="yes_or_no", date=chosen["date"], time=chosen["time"])
+
+
+# The buttons below sit just above the chat box, not inside the transcript,
+# because on a phone a button inside the transcript can slide underneath the
+# pinned input box and become impossible to tap.
 
 
 # ---------------------------------------------------------------------------
@@ -219,11 +320,64 @@ if st.session_state["phase"] == "after":
         resolve(replied=True)
         st.rerun()
 
+# The two things the assistant can do, offered whenever nothing is in progress.
+if st.session_state["phase"] in ("start", "menu", "done"):
+    check_column, book_column = st.columns(2)
+    if check_column.button(ui["menu_check"], key="menu_check", icon=":material/search:", width="stretch"):
+        add("user", "text", ui="menu_check")
+        add("assistant", "text", ui="ask_message")
+        st.session_state["phase"] = "check"
+        st.rerun()
+    if book_column.button(ui["menu_book"], key="menu_book", icon=":material/event:", width="stretch"):
+        add("user", "text", ui="menu_book")
+        start_booking()
+        st.rerun()
+
+# Booking: the days, then the times. A slot that is taken is greyed out.
+if st.session_state["phase"] == "book_day":
+    with st.container(horizontal=True):
+        for day in booking.open_days():
+            full = not booking.free_times(day)
+            label = rt.day_label(day, lang)
+            label = ui["booking_full_label"].format(day=label) if full else label
+            if st.button(label, key=f"day_{day.isoformat()}", disabled=full):
+                add("user", "text", day=day.isoformat())
+                choose_day(day)
+                st.rerun()
+
+if st.session_state["phase"] == "book_time":
+    taken = booking.taken_times(date.fromisoformat(st.session_state["booking"]["date"]))
+    with st.container(horizontal=True):
+        for time in booking.SLOT_TIMES:
+            label = ui["booking_taken_label"].format(time=time) if time in taken else time
+            if st.button(label, key=f"time_{time.replace(':', '')}", disabled=time in taken):
+                add("user", "text", text=time)
+                choose_time(time)
+                st.rerun()
+
+if st.session_state["phase"] == "book_confirm":
+    no_column, yes_column = st.columns(2)
+    if no_column.button(ui["booking_no"], key="book_no", width="stretch"):
+        add("user", "text", ui="booking_no")
+        confirm_booking(False)
+        st.rerun()
+    if yes_column.button(ui["booking_yes"], key="book_yes", type="primary", width="stretch"):
+        add("user", "text", ui="booking_yes")
+        confirm_booking(True)
+        st.rerun()
+
+if st.session_state["phase"].startswith("book_"):
+    if st.button(ui["booking_cancel"], key="cancel_booking", type="tertiary"):
+        add("user", "text", ui="booking_cancel")
+        cancel_booking()
+        st.rerun()
+    st.caption(ui["booking_note"])
+
 # Example shortcuts, only before the first check.
 # These are pills rather than buttons on purpose: a pills widget is one compact
 # row by design, so there is no custom CSS involved and nothing to break on a
 # small screen.
-if st.session_state["phase"] == "start":
+if st.session_state["phase"] in ("start", "check"):
     st.caption(ui["examples_label"])
     choice = st.pills(
         "Try an example",
@@ -252,13 +406,28 @@ st.space(180)
 # ---------------------------------------------------------------------------
 # The input. One box, used for both a pasted message and a question.
 # ---------------------------------------------------------------------------
-typed = st.chat_input(ui["input_placeholder"])
+booking_phase = st.session_state["phase"].startswith("book_")
+typed = st.chat_input(ui["input_placeholder_booking" if booking_phase else "input_placeholder"])
 if typed:
     typed = typed.strip()
     if typed:
         add("user", "text", text=typed)
         intent = intents.match(typed)
-        if intent:
+        booking_in_progress = st.session_state["phase"].startswith("book_") and intents.is_short(typed)
+        if booking_in_progress and booking_reply(typed):
+            pass
+        elif booking_in_progress:
+            # A question in the middle of a booking is answered, then the booking question is repeated.
+            if intent:
+                add("assistant", "text", intent=intent)
+            booking_prompt()
+        elif intents.is_greeting(typed):
+            add("assistant", "text", ui="greeting_reply")
+            if st.session_state["phase"] != "start":
+                st.session_state["phase"] = "menu"
+        elif intents.wants_booking(typed):
+            start_booking()
+        elif intent:
             add("assistant", "text", intent=intent)
             if st.session_state["phase"] == "start":
                 st.session_state["phase"] = "done"

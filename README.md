@@ -30,7 +30,9 @@ Built for COMP4431 (Artificial Intelligence) at The Hong Kong Polytechnic Univer
 | Feature | Description | Where to find it |
 |---|---|---|
 | Elderly-friendly chat | Large text, plain words, one question at a time, a one-tap call button, and a switch between English and Traditional Chinese | `streamlit_app.py`, `frontend/` |
-| Explainable rule engine | 28 red-flag rules and 11 compound rules, using forward chaining | `backend/rules/` |
+| Greeting and menu | Recognises a greeting such as "Hello" or "你好", then offers two functions: check a message, or book a consultation | `streamlit_app.py`, `frontend/intents.py` |
+| Consultation booking (demo) | A multi-turn booking: choose a day and a time, by button or by typing "2pm" or "下午兩點". Slots that are taken are refused. No real appointment is made | `backend/booking.py` |
+| Explainable rule engine | 27 red-flag rules, 3 mitigating rules and 14 compound rules, using forward chaining | `backend/rules/` |
 | Text clean-up | Removes invisible characters hidden inside words, turns look-alike letters into plain ones, and converts Simplified Chinese to Traditional | `backend/normalize.py` |
 | URL Inspector | Detects lookalike domains, look-alike characters, punycode, IP addresses and short links, without opening them | `backend/matching/url_inspector.py` |
 | Similar case search | Compares a message with known scam types using TF-IDF | `backend/matching/similarity.py` |
@@ -38,7 +40,7 @@ Built for COMP4431 (Artificial Intelligence) at The Hong Kong Polytechnic Univer
 | Genetic algorithm | A self-written GA tunes the rule weights against labelled data | `ga/tune.py` |
 | Follow-up and action plan | Asks what has already happened, then gives the matching steps and an incident summary | `backend/dialogue.py` |
 | Local LLM explanations (optional) | Rewrites the explanation with Ollama. It cannot change the score | `backend/llm.py` |
-| Scam Gym | Practise spotting a fictional scam and get a score | `backend/gym.py` |
+| Scam Gym | Practise spotting a fictional scam and get a score (web demo only) | `backend/gym.py` |
 | Read-aloud | Speaks the verdict using Windows voices | `frontend/speech.py` |
 | Call recording analysis (optional) | Speech-to-text with faster-whisper, then the same analysis | `backend/stt.py` |
 
@@ -154,6 +156,7 @@ scam-checker/
 │   ├── pipeline.py            Runs one message through the detector
 │   ├── scoring.py             Risk score formula
 │   ├── dialogue.py            Follow-up questions and action plans
+│   ├── booking.py             Consultation booking demo
 │   ├── patterns.py            Rule-to-reason mapping for the app
 │   ├── classifier.py          Loads the trained model
 │   ├── llm.py, stt.py, gym.py Optional LLM, speech-to-text, Scam Gym
@@ -272,7 +275,11 @@ On 10 real normal messages (bills, one-time passwords, a booking reminder and a 
 
 Full results are in `evaluation/results/report.md`.
 
+The slides are in `docs/presentation/`, and the 6-minute demo script is in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
+
 ## Limitations
+
+- Consultation bookings are a demo. They are kept in memory, shared by everyone using the running app, and cleared when it restarts.
 
 - The labelled test set is synthetic. Real scam messages are needed for a meaningful accuracy figure.
 - Simplified Chinese is converted with OpenCC character mapping, which can occasionally pick the wrong Traditional character.
