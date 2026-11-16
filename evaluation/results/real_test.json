@@ -10,6 +10,22 @@
    "high": 13,
    "low": 1,
    "medium": 3
+  },
+  "first_batch": {
+   "scam": 11,
+   "scam_flagged": 10
+  },
+  "second_batch": {
+   "scam": 6,
+   "scam_flagged": 6
+  },
+  "training_indicative": {
+   "ham": 10,
+   "ham_flagged": 1,
+   "scam": 45,
+   "scam_flagged": 44,
+   "team_collected_zh": 6,
+   "team_collected_zh_flagged": 6
   }
  },
  "results": [
@@ -242,6 +258,679 @@
     "urgency",
     "bank impersonation"
    ]
+  }
+ ],
+ "training_results": [
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "由於您帳號尚未驗證，系統將限制聊天、群聊及語音通話功能【限时24小时】請立即至安全中心 https://scam-example.us.cc/ 驗證處理！",
+   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "請確保您賬戶是本人使用，請點擊 https://app.scam-example.wiki/ 輸入本機號碼驗證，否則將在1個工作日收回您賬戶的使用權",
+   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "该账⁭⁡号被系⁣⁭统判⁭定为风⁣险违⁡⁣规，请登⁢⁭录 scam-example.my/A𝑅 解⁡⁢除，6小⁢⁭时内未解⁡除将停⁭用账⁡⁭号！",
+   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "risk_score": 79,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "您的帐号提醒需要登入 https://vip.scam-example.wiki/ 官网重新关联手机号码解除异常，如末进行处理将在6小时后将被系统注销",
+   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "risk_score": 79,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "您已成功簽署一年合約服務協議，將自動從您名下戶口續費25,200HKD，如需關閉，請於20.00點前致電：21234567",
+   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "Fungame 最強優惠 全城至多至強🫵🏻\n🧧新人專屬福利\n• 線下獨家：入 100 送 100 5 倍流水即可提款！\n• 七日大禮包：180% 首充加碼 最高送你 $2,300！\n💰 重磅回饋\n• 每週體育回贈688\n• 每週復活金：高達 $2,888 讓你每週重新出發！\n• 每日首充：天天送高達 $8,888！\n⚡ 超高返水 · 每日準時派發\n🚀 極速存取 · 實力保證\n• 充值：1分鐘極速到帳 上分話咁易\n• 提款：敢贏敢出！$100 到 $1,000,000 同樣光速到帳！\n立即開啟全新投注體驗！\nhttps://scam-example-game.com/\n專人TG 客服🧑🏻‍💻https://t.me/scam_example_852",
+   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "risk_score": 84,
+   "risk_level": "high",
+   "matched_patterns": [
+    "gambling",
+    "private chat",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【銀行通知】你的網上銀行服務將於今日晚上 11 時暫停，請立即登入 https://secure-bank.example.invalid 驗證帳戶，否則將無法使用轉帳功能。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 91,
+   "risk_level": "high",
+   "matched_patterns": [
+    "money request",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【速遞通知】你的包裹因地址不完整未能派送，請於 12 小時內支付 HK$8.50 重新安排派送：https://delivery.example.invalid",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 66,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "parcel",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "恭喜你獲得 HK$10,000 現金獎，請立即填寫資料領取獎金，逾期將會失效：https://prize.example.invalid",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 69,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "prize",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "我們提供在家工作機會，每日收入可達 HK$2,000。請先支付註冊費 HK$300，之後會安排入職。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 41,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "job offer"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "你的信用卡出現可疑交易，請立即回覆你的網上銀行密碼及一次性驗證碼，以取消這筆交易。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "password request",
+    "personal details",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "投資專員表示這項加密貨幣投資可保證每星期獲利 30%，請立即存入資金，名額只剩最後三個。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "money request",
+    "investment",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "恭喜你被抽中成為幸運會員，請提供姓名、身份證號碼和銀行帳戶資料，以便領取禮品。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 80,
+   "risk_level": "high",
+   "matched_patterns": [
+    "prize",
+    "personal details"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "你的電子郵件帳戶即將被刪除，請立即登入以下網站重新確認密碼：https://email-security.example.invalid。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 92,
+   "risk_level": "high",
+   "matched_patterns": [
+    "password request",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "警方發現你的銀行帳戶涉及犯罪活動，請立即轉移所有資金到指定安全帳戶，否則將會被拘捕。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "government impersonation",
+    "urgency",
+    "account problem"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【兼職招聘】只需使用手機每天工作一小時即可賺取高薪，請先繳交保證金以啟動你的工作帳戶。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 93,
+   "risk_level": "high",
+   "matched_patterns": [
+    "job offer",
+    "money request"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【 HKAlipay 】你名下有一份異常保單協議，該協議每年扣除 HKD21600。如有疑問請致電取消：31234567  謝謝",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 92,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "請確保您賬戶是本人使用，請點擊 scam-example.com  輸本機號碼驗證，否則將在1個工作日收回您的使用權！",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "水務署提醒閣下，尊敬的客戶！水費賬單至今尚未清繳,將暫停供應。請於5月12號之前處理：https://scam-example.cn/hk",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "government impersonation",
+    "money request",
+    "urgency",
+    "link",
+    "account problem"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "尊敬的客户，您已成功簽约一年服務協議，每月將自動從您名下戶口續約2,100HKD，如需關閉，請於20.00點前致電：31234567.",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【You TB】您已成功簽署一年合約服務協議，將自動從您名下戶口續費25,200HKD，如需關閉，請於20.00點前致電：21234567.",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "尊敬的客户，您已成功簽约一年服務協議，每月將自動從您名下戶口續約2,100HKD，如需關閉，請於20.00點前致電：21234567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【螞蟻保險扣費提醒】已經開通，每月 HKD 2699 自動扣費。取消服務，請即刻聯絡：21234567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【順豐速運】尊敬的客戶，我們已連續3次嘗試致電，均未能接通。您的包裹已延誤多日，避免出现滞留费用尽快致电： 3123-4567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 90,
+   "risk_level": "high",
+   "matched_patterns": [
+    "phone number",
+    "parcel",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "你好，我係樓下張小姐！我屋企天花出現滲水，想找你聯絡協商，我已影低滲水位置，方便請加我 WhatsApp5123 4567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 42,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "private chat",
+    "romance"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【Telegram 】因所在地區IP限制問題，請於24小時內前往 T.me/scam_example 進行辅助驗證，超時未操作將回收帳號。",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 80,
+   "risk_level": "high",
+   "matched_patterns": [
+    "account problem",
+    "private chat",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "你簽約嘅會員開始計費，涉及賬項 HKD 1,752.03 預計稍後完成轉賬。詳情查詢請聯絡：2123-4567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "money request"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【滴滴出行】你訂閱嘅滴滴生活會員已經到期，當月訂閱需要-HKD2000。如有疑問請致電：2123-4567感謝您嘅支持！",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 92,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "水務署提醒閣下，尊敬的客戶！水費賬單至今尚未清繳,將暫停供應。請於5月2號之前處理：https://scam-example.sbs/hk",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "government impersonation",
+    "money request",
+    "urgency",
+    "link",
+    "account problem"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "‌您訂閱咗BOC生活嘅會員服務已經到期，即日開始扣除月費HKD2699。取消訂閱請致電：2123-4567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 87,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "重要通知：您訂閱咗中銀生活嘅會員服務已經到期，即日開始扣除HKD2399.03月費。取消訂閱請致電：21234567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 93,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "bank impersonation"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "閣下已成功簽署一年服務協議，每月將自動從您名下戶口續費2,100HKD，如需關閉，請於20.00點前致電：21234567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "尊敬的用户，您已開通自動續費，系統將於今晚8點前扣費25,202HKD。如需關閉系統代扣請聯絡客服：21234567",
+   "source": "問卷 2026-11（網址及電話已改為虛構）",
+   "risk_score": 100,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number",
+    "urgency"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "zh",
+   "text": "【順豐速運】24小時內點擊 https://x.sf.cn/abc123 自助櫃取SF1234567890123。下載順豐APP獲取消息",
+   "source": "user 2026-11，真順豐通知（取件連結及運單號已改為虛構）",
+   "risk_score": 86,
+   "risk_level": "high",
+   "matched_patterns": [
+    "tech support",
+    "urgency",
+    "link",
+    "parcel"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "zh",
+   "text": "csl\n賬號: 12-345678-9012-34\n截數日期: 16/10/2026\n繳款日期: 30/10/2026\n應繳款項: $10\n請登入csl App https://d.hkcsl.com/abc1 查閱12期賬單內容、數據用量、繳費等服務！",
+   "source": "user 2026-11，真實正常訊息（賬號、會員號、卡號及個人連結已改為虛構）",
+   "risk_score": 16,
+   "risk_level": "low",
+   "matched_patterns": [
+    "link"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "zh",
+   "text": "你的流動通訊賬單會為你賺取Club積分。\n你的The Club會籍編號: 1234567890\nClub積分結餘: 961 (截至16/10/2026)\n你可以用Club積分參與不同城中盛事及兌換精彩獎賞，立即登入\"The Club\"手機應用程式 https://clubshopping.page.link/clubsim 揀選心水獎賞！",
+   "source": "user 2026-11，真實正常訊息（賬號、會員號、卡號及個人連結已改為虛構）",
+   "risk_score": 32,
+   "risk_level": "low",
+   "matched_patterns": [
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "zh",
+   "text": "【霸王茶姬】您的驗證碼為：887401，5分鐘內有效，請勿洩露於他人。",
+   "source": "user 2026-11，真實正常訊息（賬號、會員號、卡號及個人連結已改為虛構）",
+   "risk_score": 22,
+   "risk_level": "low",
+   "matched_patterns": [
+    "urgency"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "zh",
+   "text": "八達通：切勿向第三者透露此驗證碼。要啟動生物例如指紋或面孔識別，請輸入驗證碼bou- 374052",
+   "source": "user 2026-11，真實正常訊息（賬號、會員號、卡號及個人連結已改為虛構）",
+   "risk_score": 29,
+   "risk_level": "low",
+   "matched_patterns": [
+    "password request"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "zh",
+   "text": "香港寬頻：可於日本使用「RoamLite日費計劃」，當有漫遊數據產生時自動按 $98/日收費，以香港時間00:00至23:59為一日計算。",
+   "source": "user 2026-11，真實正常訊息（賬號、會員號、卡號及個人連結已改為虛構）",
+   "risk_score": 36,
+   "risk_level": "low",
+   "matched_patterns": [
+    "unexpected charge"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "zh",
+   "text": "請問您要保留或取消9月18日 20:10 美人漁火鍋放題 訂位嗎？點選連結回覆： https://iln.io/abc12345",
+   "source": "user 2026-11，真實正常訊息（賬號、會員號、卡號及個人連結已改為虛構）",
+   "risk_score": 15,
+   "risk_level": "low",
+   "matched_patterns": [
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "由於欠缺資料 我們無法交付您的包裹 編號 EB123456789HK www.hongkongpost-example.ink",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 49,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "您的包裹HK12345678900在運送途中受損。理賠程序已啟動，請致電: 31234567處理賠償事宜。",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 40,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "提示：閣下上月簽署會員自動扣款協議今日到期，新一期賬期費用 2,788.56 已開始計算。如需關閉或查詢請致電：2123-4567 。",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 92,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "通知：您名下存在一項全方位保障計劃異常扣費業務訂單，為了避免今日產生每年HKD12,480扣費，查詢關閉請致電：31234567",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 92,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "Trip.com 網聘訂票員數名，時薪50-80，可日結即日出粮，詳細諮詢Whats+12345678900",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 44,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "phone number",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "WhatsApp通知：您的帳戶因違規被舉報，系統將於3月29日限制並註銷，請立即至官方網站 whatsg-appc-example.com 驗證登錄。",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 53,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "account problem",
+    "urgency",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "您名下的會員合約已開始扣費，今日將扣取賬戶資金 1679.82。如需關閉此自動扣款功能，請立刻致電客服熱線：2123-4567 辦理。",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 93,
+   "risk_level": "high",
+   "matched_patterns": [
+    "unexpected charge",
+    "phone number"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "尊敬嘅用戶:你本季度嘅會員服務即將到期，從你戶口扣除本季度服務會費HKD18200。如有疑問請電:2123-4567",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 41,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "unexpected charge"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "【順豐速運】您的包裹派送失敗，需重新確認地址。請快速撥打：2123-4567 預約耀件或者安排放邊度。唔該晒！",
+   "source": "問卷 2026-11 第 23–41 行（網址及電話已改為虛構）",
+   "risk_score": 85,
+   "risk_level": "high",
+   "matched_patterns": [
+    "phone number",
+    "parcel"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "zh",
+   "text": "Pickupp：admin貨件將於今天送達\n速遞員電話：9123 4567\n追蹤訂單：pupp-example.co/abc123",
+   "source": "問卷 2026-11 第 37 行（網址及電話已改為虛構）",
+   "risk_score": 0,
+   "risk_level": "low",
+   "matched_patterns": []
+  },
+  {
+   "label": "scam",
+   "lang": "en",
+   "text": "Congratulations, you have received a grand price of 100K, please press the following link to receive the price!!!",
+   "source": "en_extra_training.tsv",
+   "risk_score": 68,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "prize",
+    "link"
+   ]
+  },
+  {
+   "label": "scam",
+   "lang": "en",
+   "text": "Purolator Shipment Notification Our delivery staff were unable to complete your package drop-off on Aug 4, 2026, because a physical signature from the recipient is required. Please submit your desired options prior to Aug 4, 2026, so we can manage the delivery: • Select a rearranged arrival time that fits your convenience • Choose to retrieve your package from a nearby Purolator office Update your shipment preferences here: https://scam-example.buzz/en If the URL fails to open, send \"Y\" as a reply, close this message window, and restart it — the link should become operational then. If your instructions are not provided by the deadline, your item could be returned to the original sender.",
+   "source": "en_extra_training.tsv",
+   "risk_score": 67,
+   "risk_level": "medium",
+   "matched_patterns": [
+    "parcel",
+    "link"
+   ]
+  },
+  {
+   "label": "ham",
+   "lang": "en",
+   "text": "Your verification code is 958629. The code will expire in 5 minutes, please complete the verification before the code expires.",
+   "source": "en_extra_training.tsv",
+   "risk_score": 6,
+   "risk_level": "low",
+   "matched_patterns": []
+  },
+  {
+   "label": "ham",
+   "lang": "en",
+   "text": "【My Sony】Verification Code/驗證碼: 13390",
+   "source": "en_extra_training.tsv",
+   "risk_score": 8,
+   "risk_level": "low",
+   "matched_patterns": []
+  },
+  {
+   "label": "ham",
+   "lang": "en",
+   "text": "SCBHK: You are registering mobile wallet for your Credit Card ending 1234 now. 961341 is your One-Time Password. Enq:28864111",
+   "source": "en_extra_training.tsv",
+   "risk_score": 10,
+   "risk_level": "low",
+   "matched_patterns": []
   }
  ]
 }
