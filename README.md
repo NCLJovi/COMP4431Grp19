@@ -306,9 +306,9 @@ The slides are in `docs/presentation/`, and the 6-minute demo script is in [docs
 
 | Student ID | Name | Role |
 |---|---|---|
-| TODO | TODO | Database and matching |
-| TODO | TODO | Scoring and backend |
-| TODO | TODO | Interface and voice |
+| 26018853D | Chow Tin Hang | Database and matching |
+| 26017253d | Ng Chin Lam Jovi | Scoring and backend |
+| 24076436d | KWAN Yan Shing | Interface and voice |
 
 ## Credits
 
