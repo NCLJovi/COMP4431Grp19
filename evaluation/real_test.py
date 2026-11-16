@@ -29,7 +29,7 @@ TEST_FILE = DATA_DIR / "real_test.csv"
 ZH_TRAINING = DATA_DIR / "zh_training.csv"
 EN_TRAINING = DATA_DIR / "en_extra_training.tsv"
 SECOND_BATCH = "23-41"          # in the source column of the questionnaire rows added later
-TEAM_COLLECTED = "組員收集"      # source of the six Chinese scams the team collected first
+FIRST_SIX = "問卷 2026-11 最早 6 條"   # source of the first six Chinese questionnaire scams
 
 
 def score(row: dict) -> dict:
@@ -83,7 +83,7 @@ def main() -> None:
     training = [score(row) for row in read_training_set()]
     train_ham = [r for r in training if r["label"] == "ham"]
     train_scam = [r for r in training if r["label"] == "scam"]
-    team_six = [r for r in train_scam if r["source"].startswith(TEAM_COLLECTED)]
+    team_six = [r for r in train_scam if r["source"].startswith(FIRST_SIX)]
 
     summary = {
         "messages": len(test),
@@ -120,7 +120,7 @@ def main() -> None:
     print("== Real training messages (indicative only: rules and weights were tuned on them)")
     print(f"Normal messages wrongly flagged: {flagged(train_ham)} of {len(train_ham)}")
     print(f"Scam messages flagged: {ratio(flagged(train_scam), len(train_scam))}")
-    print(f"  six Chinese scams collected by the team: {ratio(flagged(team_six), len(team_six))}")
+    print(f"  first six Chinese questionnaire scams: {ratio(flagged(team_six), len(team_six))}")
     show([r for r in train_ham if r["risk_level"] != "low"] + [r for r in train_scam if r["risk_level"] == "low"])
 
 

@@ -265,7 +265,7 @@
    "label": "scam",
    "lang": "zh",
    "text": "由於您帳號尚未驗證，系統將限制聊天、群聊及語音通話功能【限时24小时】請立即至安全中心 https://scam-example.us.cc/ 驗證處理！",
-   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "source": "問卷 2026-11 最早 6 條（網址及電話已改為虛構）",
    "risk_score": 100,
    "risk_level": "high",
    "matched_patterns": [
@@ -278,7 +278,7 @@
    "label": "scam",
    "lang": "zh",
    "text": "請確保您賬戶是本人使用，請點擊 https://app.scam-example.wiki/ 輸入本機號碼驗證，否則將在1個工作日收回您賬戶的使用權",
-   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "source": "問卷 2026-11 最早 6 條（網址及電話已改為虛構）",
    "risk_score": 100,
    "risk_level": "high",
    "matched_patterns": [
@@ -291,7 +291,7 @@
    "label": "scam",
    "lang": "zh",
    "text": "该账⁭⁡号被系⁣⁭统判⁭定为风⁣险违⁡⁣规，请登⁢⁭录 scam-example.my/A𝑅 解⁡⁢除，6小⁢⁭时内未解⁡除将停⁭用账⁡⁭号！",
-   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "source": "問卷 2026-11 最早 6 條（網址及電話已改為虛構）",
    "risk_score": 79,
    "risk_level": "high",
    "matched_patterns": [
@@ -303,7 +303,7 @@
    "label": "scam",
    "lang": "zh",
    "text": "您的帐号提醒需要登入 https://vip.scam-example.wiki/ 官网重新关联手机号码解除异常，如末进行处理将在6小时后将被系统注销",
-   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "source": "問卷 2026-11 最早 6 條（網址及電話已改為虛構）",
    "risk_score": 79,
    "risk_level": "high",
    "matched_patterns": [
@@ -315,7 +315,7 @@
    "label": "scam",
    "lang": "zh",
    "text": "您已成功簽署一年合約服務協議，將自動從您名下戶口續費25,200HKD，如需關閉，請於20.00點前致電：21234567",
-   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "source": "問卷 2026-11 最早 6 條（網址及電話已改為虛構）",
    "risk_score": 100,
    "risk_level": "high",
    "matched_patterns": [
@@ -328,7 +328,7 @@
    "label": "scam",
    "lang": "zh",
    "text": "Fungame 最強優惠 全城至多至強🫵🏻\n🧧新人專屬福利\n• 線下獨家：入 100 送 100 5 倍流水即可提款！\n• 七日大禮包：180% 首充加碼 最高送你 $2,300！\n💰 重磅回饋\n• 每週體育回贈688\n• 每週復活金：高達 $2,888 讓你每週重新出發！\n• 每日首充：天天送高達 $8,888！\n⚡ 超高返水 · 每日準時派發\n🚀 極速存取 · 實力保證\n• 充值：1分鐘極速到帳 上分話咁易\n• 提款：敢贏敢出！$100 到 $1,000,000 同樣光速到帳！\n立即開啟全新投注體驗！\nhttps://scam-example-game.com/\n專人TG 客服🧑🏻‍💻https://t.me/scam_example_852",
-   "source": "組員收集 2026-11（網址及電話已改為虛構）",
+   "source": "問卷 2026-11 最早 6 條（網址及電話已改為虛構）",
    "risk_score": 84,
    "risk_level": "high",
    "matched_patterns": [
