@@ -306,7 +306,7 @@ The slides are in `docs/presentation/`, and the 6-minute demo script is in [docs
 |---|---|---|
 | TODO | TODO | Database and matching |
 | TODO | TODO | Scoring and backend |
-| TODO | TODO | Interface and voice |
+| 24076436d | KWAN Yan Shing | Interface and voice |
 
 ## Credits
 
